@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Add employee{% endblock %}
+{% block content %}
+   <h1>Add employee</h1>
+<form method="POST">
+    <label for="name">Name:</label>
+    <input class="input" type="text" id="name" name="name">
+    <br>
+    <label for="surname">Surname:</label>
+    <input class="input" type="text" id="surname" name="surname">
+    <br>
+    <label for="position">Position:</label>
+    <input class="input" type="text" id="position" name="position">
+    <br>
+    <label for="workplace_id">Workplace:</label>
+    <select class="input" id="workplace_id" name="workplace_id">
+      {% for workplace in all_workplaces %}
+      <option value="{{ workplace.id }}">{{ workplace.name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <button class="add-btn" type="submit">Add employee</button>
+</form>
+{% endblock %}

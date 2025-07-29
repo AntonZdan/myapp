@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}All workplaces{% endblock %}
+{% block content %}
+    <h1>List of Workplaces</h1>
+<div class="error-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+</div>
+    <div class="buttons">
+        <a href="/add-workplace">+ Add workplace</a>
+        <a href="/employees">Show all employees</a>
+    </div>
+<div class="workplace-list">
+<table class="workplace-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Employee count</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for workplace in all_workplaces %}
+        <tr>
+            <td> {{ workplace.id }}</td>
+            <td> {{ workplace.name }}</td>
+            <td> {{ workplace.employee_count }}</td>
+            <td>
+                <a class="update-btn" href="/workplace/{{ workplace.id }}">Show info</a>
+                <form class="delete-form" style="display:inline;" action="{{ url_for('main.delete_wplace', workplace_id=workplace.id) }}" method="post">
+                    <button class="delete-btn" type="submit">Delete <i class="bi bi-trash3"></i></button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
+

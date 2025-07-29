@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}All Employees{% endblock %}
+{% block content %}
+<h1>List of Employees</h1>
+<div class="error-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+</div>
+    <div class="buttons">
+        <a href="/add-employee">+ New employee</a>
+    </div>
+<div class="workplace-list">
+<table class="workplace-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Position</th>
+        <th>Workplace name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for employee in all_employees %}
+        <tr>
+            <td> {{ employee.id }}</td>
+            <td> {{ employee.name }}</td>
+            <td> {{ employee.surname }}</td>
+            <td> {{ employee.position }}</td>
+            <td> {{ employee.workplace.name }}</td>
+            <td>
+                <a href="/update-employee/{{ employee.id }}" class="delete-btn update-btn">Update <i class="bi bi-pencil-square"></i></a>
+                <form class="delete-form" style="display:inline;" action="{{ url_for('main.delete_emp', employee_id=employee.id) }}" method="post">
+                    <button class="delete-btn" type="submit">Delete <i class="bi bi-trash3"></i></button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <a class="back-to-workplace" href="/">Back to workplace list</a>
+</div>
+{% endblock %}
+

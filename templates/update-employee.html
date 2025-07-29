@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Update employee information{% endblock %}
+{% block content %}
+<h1>Update employee information</h1>
+<div class="workplace-list">
+<table class="workplace-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Position</th>
+        <th>Workplace name</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> {{ employee.id }}</td>
+            <td> {{ employee.name }}</td>
+            <td> {{ employee.surname }}</td>
+            <td> {{ employee.position }}</td>
+            <td> {{ employee.workplace.name }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+    <form method="POST">
+    <label for="name">New name:</label>
+    <input class="input" value="{{ employee.name }}" type="text" id="name" name="name">
+    <br>
+    <label for="surname">New surname:</label>
+    <input class="input" value="{{ employee.surname }}" type="text" id="surname" name="surname">
+    <br>
+    <label for="position">New position:</label>
+    <input class="input" value="{{ employee.position }}" type="text" id="position" name="position">
+    <br>
+     <label for="workplace_id">Workplace:</label>
+    <select class="input"  id="workplace_id" name="workplace_id">
+      {% for workplace in workplaces %}
+      <option value="{{ workplace.id }}">{{ workplace.name }}</option>
+      {% endfor %}
+    </select>
+    <button class="add-btn" type="submit">Update employee</button>
+    </form>
+{% endblock %}
+
+

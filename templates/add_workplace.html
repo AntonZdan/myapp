@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Add new workplace{% endblock %}
+{% block content %}
+<h1>Add new workplace</h1>
+  <form class="add-workplace" method="POST">
+    <label for="name">Name:</label>
+    <input class="input" type="text" id="name" name="name">
+    <label for="city">City:</label>
+    <input class="input" type="text" id="city" name="city">
+    <button class="add-btn" type="submit">Add workplace</button>
+</form>
+{% endblock %}

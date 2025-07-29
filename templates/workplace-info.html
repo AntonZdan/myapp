@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Update Workplace information{% endblock %}
+{% block content %}
+<h1>Workplace information</h1>
+<div class="workplace-list">
+<table class="workplace-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Employee count</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> {{ workplace.id }}</td>
+            <td> {{ workplace.name }}</td>
+            <td> {{ workplace.city }}</td>
+            <td> {{ workplace.employee_count }}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class="buttons update">
+        <a class="update-btn" href="/update-workplace/{{ workplace.id }}">Update information</a>
+        <a class="back-btn" href="/">Back to workplace list</a>
+    </div>
+{% endblock %}
+
+

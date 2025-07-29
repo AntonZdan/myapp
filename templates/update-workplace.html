@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Update Workplace information{% endblock %}
+{% block content %}
+<h1>Update employee information</h1>
+<div class="workplace-list">
+<table class="workplace-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Employee count</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> {{ workplace.id }}</td>
+            <td> {{ workplace.name }}</td>
+            <td> {{ workplace.city }}</td>
+            <td> {{ workplace.employee_count }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+<form method="POST">
+    <label for="name">New name:</label>
+    <input class="input" value="{{ workplace.name }}" type="text" id="name" name="name">
+    <br>
+    <label for="city">New city:</label>
+    <input class="input" value="{{ workplace.city }}" type="text" id="city" name="city">
+    <div class="cancel-btn">
+        <button class="add-btn update-btn" type="submit">Update workplace</button>
+        <a class="add-btn" href="/workplace/{{ workplace.id }}">Cancel</a>
+    </div>
+
+</form>
+{% endblock %}
